@@ -64,11 +64,14 @@ function Homepage() {
     const [age, setAge] = useState("")
     const [gender, setGender] = useState("")
     const [city, setCity] = useState("")
+
     const RefreshPage = () => {
         window.location.reload()
     }
     const location = useLocation()
+    const [searchData, setSearchData] = useState(location.search)
     console.log(location)
+
     const [url, setUrl] = useState(`http://localhost:2345/students${location.search}`)
     const history = useHistory()
     useEffect(() => {
@@ -88,16 +91,46 @@ function Homepage() {
     const handleOpen = () => {
         setOpen(true)
     }
-
+    const [sort, setSort] = useState("")
     return (
         <>
 
             <HomepageStyled>
-                <div className="heading2"><h1>Student Information</h1></div>
+                <div className="heading2"><h1 style={{ fontSize: "4rem" }}>Student Information</h1></div>
                 <div className="studentInfo">
                     <StudentShowStyled>
                         <div>
                             <div>
+
+                                <div>
+
+                                    <FormControl fullWidth>
+                                        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={sort}
+                                            // onChange={handleChange}
+                                            variant="outlined"
+
+                                            defaultValue={sort}
+                                            onChange={(e) => {
+                                                setSort(e.target.value)
+                                                for (let i = 0; i < searchData.length; i++) {
+                                                    if (searchData[i] === "s" && searchData[i + 1] === "o") {
+                                                        setSearchData(searchData.slice(0, i - 1))
+                                                    }
+                                                }
+                                                history.push(`/students${searchData}&sort=${e.target.value}`)
+                                            }}
+                                        >
+                                            <MenuItem value={-1}> Ascending </MenuItem>
+                                            <MenuItem value={1}>Descending</MenuItem>
+                                        </Select>
+                                    </FormControl>
+
+
+                                </div>
                                 <h3>Select Page</h3>
                                 <MemoryRouter initialEntries={['/students']} initialIndex={0}>
 
@@ -116,6 +149,7 @@ function Homepage() {
                                                             {...item}
                                                             onClick={() => {
                                                                 history.push(`/students${item.page === 1 ? '' : `?page=${item.page}`}`)
+                                                                RefreshPage();
                                                             }}
                                                         />
                                                     )}
