@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: rgb(46, 48, 53);
+      }
+      .navbar {
+        width: 100%;
+        z-index: 1000;
+        height: 4rem;
+        text-align: center;
+        display: flex;
+        margin: 0 auto;
+        position: fixed;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .topContainer {
+        background: url(https://s.imgur.com/desktop-assets/desktop-assets/homebg.e52b5cdf24f83bcd55f9f1318855f2ef.png)
+          no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 30rem;
+      }
+
+      html {
+        line-height: 1.15;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-family: Proxima Nova Regular, Helvetica Neue, Helvetica, Arial,
+          sans-serif;
+      }
+
+      .topbarLogo {
+        float: left;
+        width: 130px;
+        height: 35px;
+        display: flex;
+        position: relative;
+        align-items: center;
+        top: 16px;
+        margin-left: 15px;
+        background: url("https://res.cloudinary.com/postman/image/upload/t_team_logo_pubdoc/v1/team/c8083321585c701249cae9164f05542d4e742b7c2db02e9856f79e193b3d8e30")
+          left center / contain no-repeat;
+      }
+
+      .newPost {
+        text-align: center;
+        min-width: 6rem;
+        margin: auto 20px;
+        position: relative;
+        height: 20px;
+        /* display: inline-block; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 7px 14px 10px 9px;
+        text-transform: none;
+        user-select: none;
+        touch-action: manipulation;
+        border-radius: 3px;
+        font-size: 15px;
+        font-weight: 700;
+        position: relative;
+        width: auto;
+        background-color: #1bb76e;
+        box-shadow: 0 6px 10px 0 rgba(27, 28, 30, 0.31);
+        color: #fff;
+        white-space: nowrap;
+      }
+
+      .navbarLeftcontainer {
+        min-width: 360px;
+        position: relative;
+        display: flex;
+        justify-content: start;
+      }
+
+      .navbarCentercontainer {
+        position: relative;
+        display: inline-flex;
+        max-width: 550px;
+        margin: auto;
+        align-items: center;
+        flex: 1;
+        justify-content: space-around;
+      }
+
+      .searchbarform {
+        width: 100%;
+      }
+
+      .searchbar {
+        position: relative;
+        float: right;
+        width: 100%;
+        max-width: 550px;
+        height: 35px;
+      }
+
+      .Searchbar-textInput {
+        background: hsla(0, 0%, 100%, 0.25);
+        border: 1px solid transparent;
+        padding: 8px 35px 8px 10px;
+        border-radius: 3px;
+        width: 100%;
+        outline: 0 none;
+        opacity: 0.8;
+        height: 20px;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        color: #fff;
+        text-shadow: inherit;
+        -webkit-text-fill-color: inherit;
+      }
+
+      .Searchbar-submitInput {
+        position: absolute;
+        font-size: 20px;
+        right: -2.3rem;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: transparent;
+        color: #fff;
+        border: 0;
+        outline: 0 none;
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      .navbarContainerRight {
+        min-width: 260px;
+        display: inline-flex;
+        justify-content: flex-end;
+        position: relative;
+      }
+
+      .profileNavbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 23rem;
+        align-items: center;
+      }
+
+      .goadFreebutton {
+        background: #6432f9;
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12);
+        padding: 0 10px 0 9px;
+        overflow: hidden;
+        margin: auto 0;
+        line-height: 35px;
+        text-align: center;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        padding: 7px 14px 10px 9px;
+        text-transform: none;
+        user-select: none;
+        touch-action: manipulation;
+        border-radius: 3px;
+        font-size: 15px;
+        font-weight: 700;
+        position: relative;
+        width: auto;
+        box-shadow: 0 6px 10px 0 rgba(27, 28, 30, 0.31);
+        color: #fff;
+        white-space: nowrap;
+      }
+
+      .NavbarMessageButton {
+        position: relative;
+        top: 2px;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .NotificationButton {
+        position: relative;
+        top: 2px;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .message {
+        font-size: 24px;
+        font-family: Proxima Nova ExtraBold, Helvetica Neue, Helvetica, Arial,
+          sans-serif;
+        letter-spacing: 0.6px;
+        color: #aed8ea;
+        text-align: center;
+        min-height: 34px;
+        position: relative;
+        top: 5rem;
+      }
+
+      .TrendingTagsHeader {
+        height: 31px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 0.7;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 1.3px;
+        text-align: left;
+        position: relative;
+        top: 1rem;
+        color: #fff;
+        text-transform: uppercase;
+      }
+
+      .TrendingTagsLabel {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .TrendingTags {
+        height: 17rem;
+        position: relative;
+        top: 6rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 2rem;
+      }
+
+      .TrendingTagsContainer {
+        display: flex;
+        justify-content: center;
+        /* flex-wrap: wrap; */
+      }
+
+      .Tag {
+        position: relative;
+        margin: 6px 6px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        border-radius: 3px;
+        background-color: rgba(121, 67, 200, 0.8);
+        background-size: auto 115px;
+        background-repeat: repeat-x;
+        background-position: 100% 0;
+        transition: transform 0.3s;
+        -webkit-transition: transform 0.3s;
+      }
+
+      .Tag > div {
+        border-radius: 0 0 3px 3px;
+      }
+
+      .TagName {
+        font-size: 14px;
+        line-height: 1.15;
+        letter-spacing: 0.4px;
+        color: #fff;
+        text-transform: capitalize;
+        word-break: break-word;
+      }
+
+      .TagPosts {
+        margin-top: 4px;
+        font-size: 11px;
+        line-height: 1.46;
+        letter-spacing: 0.4px;
+        color: hsla(0, 0%, 100%, 0.5);
+      }
+
+      .TagTitle {
+        font-family: Proxima Nova Bold, Helvetica Neue, Helvetica, Arial,
+          sans-serif;
+        padding: 12px;
+        width: 79%;
+        text-align: center;
+        color: #fff;
+      }
+      #mainPhotos {
+        width: 80%;
+        /* position: absolute; */
+        margin: auto;
+        background-color: rgb(46, 48, 53);
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 1rem;
+      }
+      #mainPhotosContainer1,
+      #mainPhotosContainer2,
+      #mainPhotosContainer3,
+      #mainPhotosContainer4,
+      #mainPhotosContainer5 {
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+      }
+      #imageCard {
+        width: 100%;
+        display: grid;
+        height: auto;
+        border-radius: 10px;
+        align-self: start;
+      }
+      .image {
+        width: 100%;
+        height: 100%;
+      }
+      .image > img {
+        width: 100%;
+        height: 100%;
+      }
+      .description {
+        height: 5rem;
+        padding: 1rem;
+        background-color: rgb(71, 74, 81);
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+      }
+      .stats {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgb(141, 146, 155);
+      }
+      .stats > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+      }
+      #buttons {
+        margin-top: 31rem;
+        padding-left: 32rem;
+        margin-bottom: 1rem;
+        display: flex;
+        column-gap: 1rem;
+      }
+      #buttons > button {
+        height: 2rem;
+        font-weight: bold;
+        background-color: darkgray;
+        width: 2rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="topContainer">
+      <div class="navbar">
+        <div class="navbarLeftcontainer">
+          <div class="topbarLogo"></div>
+
+          <a class="newPost" href="">
+            <img
+              src="https://s.imgur.com/desktop-assets/desktop-assets/icon-new-post.13ab64f9f36ad8f25ae3544b350e2ae1.svg"
+              alt=""
+            />
+            <span>New Post</span>
+          </a>
+        </div>
+        <div class="navbarCentercontainer">
+          <div class="searchbar">
+            <input
+              placeholder="Images, #tags, @users oh my!"
+              type="text"
+              class="Searchbar-textInput"
+              id="search"
+              oninput="handleChange(this.value)"
+            />
+            <button onclick="handleClick()" class="Searchbar-submitInput">
+              <img
+                class="search"
+                src="https://s.imgur.com/desktop-assets/desktop-assets/icon-search.8d0f9b564a4659d48d8eca38b968a7f2.svg"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="navbarContainerRight">
+          <div class="profileNavbar">
+            <a href="" class="goadFreebutton">Go ad free</a>
+            <a title="Top Comments" href="/leaderboard"
+              ><svg
+                width="32"
+                height="32"
+                viewBox="0 -2 34 34"
+                class="uScaleTransition ProfileNavbar-item"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Comment Leaderboard</title>
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M0 0h32v32H0z"></path>
+                  <g
+                    transform="translate(6.5 3)"
+                    stroke="#ffffff"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 16.977v7.076l5.5-2.481 5.5 2.481v-7.076l-5.5 1.245L4 16.977z"
+                    ></path>
+                    <circle cx="9.5" cy="9.5" r="8.5"></circle>
+                  </g>
+                </g></svg
+            ></a>
+            <a
+              class="NavbarMessageButton"
+              title="Chat"
+              href="https://imgur.com/account/messages"
+              ><svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Chat</title>
+                <path
+                  stroke="#ffffff"
+                  stroke-width="2"
+                  clip-rule="evenodd"
+                  d="M11.076 27.182a.24.24 0 00.37.153c.908-.576 2.805-2.12 5.345-4.496l.313-.292h3.965c3 0 5.431-2.442 5.431-5.454v-5.139c0-3.012-2.432-5.454-5.431-5.454H10.931c-3 0-5.431 2.442-5.431 5.454v6.28c0 2.382 1.922 4.313 4.294 4.313h1.11l-.024 1.115c-.037 1.6.033 2.783.196 3.52v0z"
+                ></path></svg
+              ><span class="Button-label"></span
+            ></a>
+            <a class="NotificationButton" title="Notifications"
+              ><svg
+                width="32"
+                height="32"
+                viewBox="0 -2 34 34"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title>Notifications</title>
+                <g fill="none" fill-rule="evenodd">
+                  <path d="M0 0h32v32H0z"></path>
+                  <path
+                    stroke="#ffffff"
+                    d="M14 27c.681.123 1.348.185 2 .185.652 0 1.319-.062 2-.185"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  ></path>
+                  <path
+                    fill="#ffffff"
+                    d="M16 23.711c-4.425 0-9.899-.453-10.847-2.612-.206-.47-.384-1.416.74-2.476 1.391-1.312 1.68-3.554 1.986-5.927.508-3.938 1.14-8.838 8.093-8.999 7.008.161 7.64 5.06 8.149 8.998.306 2.374.595 4.615 1.985 5.927 1.125 1.061.947 2.007.741 2.476-.948 2.16-6.422 2.613-10.847 2.613zM7.405 20.33c.69.51 3.667 1.178 8.595 1.178 4.928 0 7.906-.669 8.595-1.178a1.614 1.614 0 0 0-.14-.148c-1.96-1.85-2.313-4.58-2.654-7.22-.489-3.79-.964-6.18-4.028-6.862a9.305 9.305 0 0 0-1.801-.199c-4.648.109-5.201 2.625-5.773 7.062-.341 2.64-.693 5.37-2.654 7.219a1.58 1.58 0 0 0-.14.148z"
+                    fill-rule="nonzero"
+                  ></path>
+                </g></svg
+              ><span class="Button-label"></span
+            ></a>
+            <span style="color: white; font-weight: bold">omkarvgavade</span>
+          </div>
+        </div>
+      </div>
+      <div class="message">You deserve to smile today</div>
+      <div class="TrendingTags">
+        <div class="TrendingTagsHeader" style="width: 1342px; padding: 0px 6px">
+          <div class="TrendingTagsLabel"><span>Explore Tags</span></div>
+          <a class="TrendingTagsLabelToggle">MORE TAGS +</a>
+        </div>
+        <div class="TrendingTagsContainer" style="width: 1342px">
+          <a
+            class="Tag"
+            href="/t/pokemon?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/R.46c277a082f43438e684c7d0000245f6?rik=5CkuAfbf8tPY5Q&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f02%2fCute-Pokemon-HD-Wallpaper-Download-Free.jpg&ehk=5koyxsO1QmtYSS1VOzFWeoQ8Ll%2fu00%2baKYrKA045Uw0%3d&risl=&pid=ImgRaw&r=0');
+              height: 130px;
+              width: 232px;
+            "
+          >
+            <div
+              class="TagTitle"
+              style="background-color: rgb(197, 101, 121); width: 90%"
+            >
+              <div class="TagName">pokemon</div>
+              <div class="TagPosts">FEATURED • 52,200 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/halloween?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/R.daf0c4e0180c741afa4c094be065e06e?rik=IO5crgFxr7ZNGg&riu=http%3a%2f%2fwallpapersdsc.net%2fwp-content%2fuploads%2f2016%2f10%2fHalloween-Wallpapers-7.jpg&ehk=xURg1qhHGSqJj1To9d3Vocfs9dfamOh4Vuz7Q5JtQJ4%3d&risl=&pid=ImgRaw&r=0');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(58, 40, 69)">
+              <div class="TagName">Halloween</div>
+              <div class="TagPosts">46,489 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/extra_life?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.Kg0ldpwYrgTiHNjXzdy0WwHaEo?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(73, 70, 176)">
+              <div class="TagName">Extra Life</div>
+              <div class="TagPosts">453 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/pumpkin?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.bAYRo6rlMDWy43BrCBlMUAHaEs?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(255, 112, 0)">
+              <div class="TagName">pumpkin</div>
+              <div class="TagPosts">3,654 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/funny?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.GUNFc1_1u4CNp6X710EfxAHaEo?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(99, 56, 117)">
+              <div class="TagName">funny</div>
+              <div class="TagPosts">2,697,010 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/oc?source=featured_tag_module"
+            style="
+              background-image: url('https://i.imgur.com/4LBx79U_d.jpg?maxwidth=800&amp;shape=thumb&amp;fidelity=high');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(171, 128, 184)">
+              <div class="TagName">oc</div>
+              <div class="TagPosts">36,998 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/coronavirus?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.IaQmWCFFEnug4DXnd29LEAHaEo?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(81, 83, 90)">
+              <div class="TagName">coronavirus</div>
+              <div class="TagPosts">35,285 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/aww?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.POePxsAN4GmWmBMAOvyz-wHaHa?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(96, 174, 187)">
+              <div class="TagName">aww</div>
+              <div class="TagPosts">761,304 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/gaming?source=featured_tag_module"
+            style="
+              background-image: url('https://www.pixelstalk.net/wp-content/uploads/2016/06/Photos-video-games-wallpaper.jpg');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(43, 26, 90)">
+              <div class="TagName">gaming</div>
+              <div class="TagPosts">296,026 Posts</div>
+            </div> </a
+          ><a
+            class="Tag"
+            href="/t/unmuted?source=featured_tag_module"
+            style="
+              background-image: url('https://th.bing.com/th/id/OIP.1B_TZByZMX1pA-h-yVO_kQHaEK?pid=ImgDet&rs=1');
+              height: 130px;
+              width: 110px;
+            "
+          >
+            <div class="TagTitle" style="background-color: rgb(38, 59, 167)">
+              <div class="TagName">unmuted</div>
+              <div class="TagPosts">13,570 Posts</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="buttons"></div>
+    <div id="mainPhotos">
+      <div id="mainPhotosContainer1"></div>
+      <div id="mainPhotosContainer2"></div>
+      <div id="mainPhotosContainer3"></div>
+      <div id="mainPhotosContainer4"></div>
+      <div id="mainPhotosContainer5"></div>
+    </div>
+  </body>
+  <script>
+    showButtons(1);
+    async function getData(val, page) {
+      console.log(val, page);
+      try {
+        let data = await fetch(
+          `https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&page=${page}&per_page=30&query=${val}`
+        );
+        let data2 = await data.json();
+        console.log(data.Response);
+        if (data2.Response == "False") {
+          console.log("err");
+        } else {
+          let data3 = data2.results;
+          let arr = [
+            "mainPhotosContainer1",
+            "mainPhotosContainer2",
+            "mainPhotosContainer3",
+            "mainPhotosContainer4",
+            "mainPhotosContainer5",
+          ];
+          let floor = Math.floor(data3.length / arr.length);
+          console.log(floor);
+          for (let i = 0; i < arr.length; i++) {
+            if (i == 0) {
+              showData(data3.slice(i, floor + 1), arr[0]);
+            } else {
+              showData(data3.slice(floor * i, floor * i + (floor + 1)), arr[i]);
+            }
+          }
+        }
+      } catch (e) {
+        console.log(e, "hi");
+      }
+    }
+    getData("nature", 1);
+    function showData(data, box) {
+      box = document.getElementById(`${box}`);
+      box.innerHTML = null;
+      data.map((el) => {
+        let imageCardDiv = document.createElement("div");
+        imageCardDiv.id = "imageCard";
+
+        imageCardDiv.innerHTML = `
+          <div class="image">
+            <img
+              src=${el.urls.small}
+              alt=""
+            />
+          </div>
+          <div class="description">
+            <div class="forPadding">
+              <p>How churros are made in traditional churrafas</p>
+              <div class="stats">
+                <div class="Vote Vote-up">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Upvote</title>
+                    <path
+                      stroke-width="0"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M7.197 2.524a1.2 1.2 0 011.606 0c.521.46 1.302 1.182
+                      2.363 2.243a29.617 29.617 0 012.423 2.722c.339.435.025
+                      1.028-.526 1.028h-2.397v4.147c0 .524-.306.982-.823
+                      1.064-.417.066-1.014.122-1.843.122s-1.427-.056-1.843-.122c-.517-.082-.824-.54-.824-1.064V8.517H2.937c-.552
+                      0-.865-.593-.527-1.028.52-.669 1.32-1.62 2.423-2.722a52.996
+                      52.996 0 012.364-2.243z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                  <span>1598</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="Vote Vote-down"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Downvote</title>
+                    <path
+                      fill="currentColor"
+                      stroke="#ffffff"
+                      stroke-width="0"
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M8.803 13.476a1.2 1.2 0 01-1.606 0 53.03 53.03 0 01-2.364-2.243 29.613 29.613 0 01-2.422-2.722c-.339-.435-.025-1.028.526-1.028h2.397V3.336c0-.524.306-.982.823-1.064A11.874 11.874 0 018 2.15c.829 0 1.427.056 1.843.122.517.082.824.54.824 1.064v4.147h2.396c.552 0 .865.593.527 1.028-.52.669-1.32 1.62-2.423 2.722a53.038 53.038 0 01-2.364 2.243z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="PostCommentsIcon"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Comments</title>
+                    <path
+                      fill="currentColor"
+                      stroke="#ffffff"
+                      stroke-width="0"
+                      d="M4.455 12.195l.367 1.105 1.037-.53c.266-.135.637-.412 1.039-.74.39-.319.872-.737 1.422-1.245h2.291a3.306 3.306 0 003.306-3.306V5.306A3.306 3.306 0 0010.611 2H5.306A3.306 3.306 0 002 5.306v2.656c0 1.34.933 2.461 2.185 2.75.008.172.025.335.046.479a6.622 6.622 0 00.168.803c.016.07.035.137.056.2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+
+                  <span> 133 </span>
+                </div>
+                <div>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="PostViewsIcon"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Post views</title>
+                    <path
+                      d="M8 2.5C4.74998 2.5 2.30142 5.50267 1.27514 6.77517C0.925337 7.20917 0.908553 7.76483 1.2278 8.16583C2.22527 9.41833 4.6991 12.5 8 12.5C11.3686 12.5 13.8396 9.31133 14.796 8.0905C15.0769 7.732 15.0674 7.2535 14.7692 6.8755C13.7938 5.6395 11.3376 2.5 8 2.5ZM7.98224 9.33333C6.90897 9.33333 6.03887 8.51233 6.03887 7.5C6.03887 6.4875 6.90897 5.66667 7.98224 5.66667C9.05551 5.66667 9.92561 6.4875 9.92561 7.5C9.92561 8.51233 9.05551 9.33333 7.98224 9.33333Z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                  <span> 22.4M </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
+        box.appendChild(imageCardDiv);
+      });
+    }
+    function handleClick() {
+      let search = document.getElementById("search").value;
+      getSearchData(search);
+      getData(search, 1);
+    }
+    async function handleChange(val) {
+      try {
+        let data = await fetch(
+          "https://api.unsplash.com/search/photos?client_id=1_mZ7KFa6sDdUAKLf3npFtX5ASyCft4qo3E7dkPVKyw&per_page=30&query=office"
+        );
+        let data2 = await data.json();
+        if (data2.Response == "False") {
+          console.log("err");
+        } else {
+          console.log(data2, "sdfsdf");
+        }
+      } catch (e) {
+        console.log(e, "hi");
+      }
+    }
+    function showButtons(index) {
+      let buttons_div = document.getElementById("buttons");
+      buttons_div.innerHTML = null;
+      let original_id = index;
+      if (index <= 6) {
+        index = 6;
+      }
+      for (let i = index - 5; i <= index + 5; i++) {
+        let btn1 = document.createElement("button");
+        btn1.innerHTML = `${i}`;
+        btn1.setAttribute("id", `${i}`);
+        btn1.onclick = showData2;
+        buttons_div.appendChild(btn1);
+      }
+      let btn = document.getElementById(original_id);
+    }
+    var search2 = "nature";
+    function getSearchData(val) {
+      search2 = val;
+    }
+
+    function showData2() {
+      let id = Number(this.id);
+      let num = id - 1;
+      let search = document.getElementById("search").value;
+
+      getData(search2, num);
+      console.log(search2, "this is search2");
+
+      showButtons(id);
+    }
+  </script>
+</html>
