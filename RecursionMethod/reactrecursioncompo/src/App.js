@@ -24,6 +24,20 @@ function App() {
             body: "Thanks for the update!",
             timestamp: "Sun Aug 02 2020 18:15:45 GMT+0530",
             points: "8"
+          },
+          {
+            id: "005",
+            author: "abhishek",
+            body: "Thanks for the update abhishek!",
+            timestamp: "Sun Aug 02 2020 18:15:45 GMT+0530",
+            points: "8",
+            replies: [{
+              id: "010",
+              author: "Omkar",
+              body: "looking forward for the demo214124!",
+              timestamp: "Sun Aug 02 2020 18:10:45 GMT+0530",
+              points: "2"
+            }]
           }
         ]
       },
